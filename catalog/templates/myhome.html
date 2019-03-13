@@ -1,0 +1,17 @@
+{% include 'nav.html' %}
+<div class="main">
+{% block content %}
+  <!-- {% for mc in mcs_hub %}
+    <a href="{{ url_for('showMobiles',mcid=mc.id)}}">{{mc.name}}</a><br>
+    {% endfor %} -->
+   
+
+	<div class="text-center">
+		 <h1 style="color:red;">Welcome To MobileStore</h1>  
+		<img style="width: 750px; height: 350px; margin: 0; padding: 0; margin-top: 50px" src="https://www.gizbot.com/img/2017/11/flipkartsamsungmobilesfestdeals-06-1509969605.jpg">
+		<marquee><h2>MOBILES</h2></marquee>
+	</div>
+
+    
+{% endblock content %}
+</div>

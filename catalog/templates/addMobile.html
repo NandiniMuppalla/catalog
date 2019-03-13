@@ -1,0 +1,22 @@
+{% include 'nav.html' %}
+<div class="main">
+{% block content %}
+    
+
+	<div class="">
+		<div style="width: 500px;">
+			
+		
+			<div class="panel panel-primary" style="margin: 20px;">
+				<div class="panel-heading">Add Mobile Name:</div>
+				<div class="panel-body">
+					<form class="form-inline" action="{{ url_for('addMobile')}}" method="POST">
+						  <label for="email" class="mr-sm-2">Enter Mobile Name:</label>
+						  <input type="text" class="form-control mb-2 mr-sm-2" name="name" placeholder="Enter Mobile Name" required>
+						  <input type="submit" class="w3-btn w3-black"" value="Add Mobile">
+					</form>
+				</div>
+			</div>	
+		</div>	
+	</div>
+{% endblock content %}

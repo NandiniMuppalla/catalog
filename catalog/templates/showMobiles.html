@@ -1,0 +1,45 @@
+{% include 'nav.html' %}
+<div class="main">
+{% block content %}
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	        <div class="alert alert-success alert-dismissable animated fadeIn">
+	            {% for message in messages %}
+	            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+	            <p class="h4"><strong>{{ message }}</strong></p>
+	            {% endfor %}
+	        </div>
+	{% endif %}	    
+{% endwith %}
+{% if 'username' in session %}
+<button type="button" class="btn btn-warning" style="margin: 5px 0px 5px 25px;"><a href="{{url_for('addMobileDetails',mcname=mcs.name)}}" style="text-decoration: none;"><strong>Add New Edition</strong></a></button>
+
+{% endif %}
+<div class="row" style="margin: 10px;">
+{% for mcv in mcvs %}
+
+	<div class="col-sm-4 text-center">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h4>{{ mcv.name }}</h4>
+			</div>
+			<div class="panel-body text-center">
+				<table>
+					<tr><th>Name</th><td>:</td><td><h5>{{ mcv.name }}</h5></td></tr>
+					<tr><th>Price</th><td>:</td><td><h5>{{ mcv.price }}</h5></td></tr>
+					<tr><th>color</th><td>:</td><td><h5>{{ mcv.color }}</h5></td></tr>
+				</table>
+			</div>
+			{% if 'username' in session %}
+			<div class="panel-footer">
+					<button type="button" class="btn btn-info"><a href="{{ url_for('editMobile',mcid=mcs.id,mcvname=mcv.name) }}"style="text-decoration: none;color:white;">Edit</a></button>
+					<button type="button" class="btn btn-danger"><a href="{{ url_for('deleteMobile',mcid=mcs.id,mcvname=mcv.name)}}"style="text-decoration: none;color:white;">Delete</a></button>
+			</div>
+			{% endif %}	
+			
+		</div>
+	</div>
+{% endfor %}
+</div>
+{% endblock content %}
+</div>

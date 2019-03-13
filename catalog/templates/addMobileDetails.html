@@ -1,0 +1,45 @@
+{% include 'nav.html' %}
+<div class="main">
+{% block content %}
+
+<div class="">
+		<div class="mr-sm-2 mb-2 col-sm-8" style="margin: 10px;">
+			<form action="{{ url_for('addMobileDetails',mcname=mcname)}}" method="POST">
+				<div class="panel panel-primary">
+				  <div class="panel-heading bg-success">Add Mobile Details</div>
+				  <div class="panel-body">
+				  	
+					  <div class="form-group">
+					  	<label class="text-primary" for="name">Enter Mobile Name:</label>
+					    <input type="name" class="form-control" name="name" placeholder="Enter Mobile Name:"  required>
+					  </div>
+					  <div class="form-group">
+					  	<label class="text-primary" for="author">Enter Price:</label>
+					    <input type="text" class="form-control" name="price" placeholder="Enter Price:" required>
+					  </div>
+					  <div class="form-group">
+					  	<label class="text-primary" for="author">Enter  Edition  :</label>
+					    <input type="text" class="form-control" name="edition" placeholder="Enter  Edition :" required>
+					  </div>
+					  <div class="text-primary" class="form-group">
+					  	<label for="publisher">Enter specifications:</label>
+					    <input type="text" class="form-control" name="specifications" placeholder="Enter Specifications:"required>
+					  </div>
+					  <div class="form-group">
+					  	<label class="text-primary" for="color">Enter color:</label>
+					    <input type="text" class="form-control" name="color" placeholder="Enter color:" required>
+					  </div>
+					  <div class="form-group">
+					  	<label class="text-primary" for="color">Enter Rating:</label>
+					    <input type="text" class="form-control" name="rating" placeholder="Enter rating:" required>
+					  </div>
+					  <div class="form-group">
+					    <input type="text" class="form-control " name="mobilestoreid" value="{{ mcname }}" readonly>
+					  </div>
+				  </div> 
+				  <div class="panel-footer text-center"><input type="submit" class="btn btn-primary" value="Submit"></div>
+				</div>
+				</form>
+			</div>
+</div>
+{% endblock content %}

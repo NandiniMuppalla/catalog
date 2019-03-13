@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Mobile Store  </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//apis.google.com/js/platform.js?onload=start"> </script>
+  <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+  <style>
+    body {
+      font-family: "Georgia", sans-serif;
+	  background-color: #b8c2cc;
+	  
+    }
+
+    .sidenav {
+      height: 100%;
+      width: 300px;
+      position: fixed;
+      z-index: 1;
+      top: 50px;
+      left: 0;
+      background-color: #5661b3;
+	  text:black;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+
+    .sidenav a {
+      padding: 6px 6px 6px 32px;
+      text-decoration: none;
+      font-size: 15px;
+      color: white;
+      display: block;
+    }
+
+    .sidenav a:hover {
+      color:black;
+    }
+
+    .main {
+      margin-left: 300px; /* Same as the width of the sidenav */
+
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
+	.navbar{
+		background-color: white;
+	
+	}
+	.navbar-header{
+			background-color: green;
+		border-radius:10%;
+	}
+	li{
+	text:blue;
+	}
+	
+	 
+
+  </style>
+  {% block head %}{% endblock head %}
+</head>
+<body>
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <script>
+            var messages = {{ messages | safe }};
+            for (var i=0; i<messages.length; i++) {
+              alert(messages[i]);
+            }
+          </script>
+        {% endif %}
+{% endwith %}
+<nav class="navbar navbar-inverse  navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{{ url_for('home') }}">Mobile Hub</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      {% if 'username' in session %}
+            <li><button class="btn btn-warning mr-sm-2" style="margin-top: 5px;"><a href="{{ url_for('addMobile')}}">Add Mobile Category</a></button></li>
+            <li style="margin: 10px;"><p class="text-primary mr-sm-2">{{ session.username }}</p></li>
+            <li><a href="{{ url_for('logout')}}"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
+      {% else %}
+            <li><a href="{{ url_for('showLogin')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      {% endif %}
+      
+    </ul>
+  </div>
+</nav>
+  
+<div class="sidenav">
+  <table>
+      {% for mc in mcs_hub %}
+      <tr>
+          <td><a href="{{ url_for('showMobiles',mcid=mc.id)}}">{{mc.name}}</a></td>
+          {% if 'username' in session %}
+            <td><a href = "{{ url_for('editMobileCategory',mcid=mc.id)}}">
+            <span class="glyphicon glyphicon-pencil pull-right " data-toggle="tooltip" title="Edit Mobile" data-placement="bottom"> </span> </a></td>
+            <td><a href = "{{ url_for('deleteMobileCategory',mcid=mc.id)}}">
+            <span class="glyphicon glyphicon-trash pull-right" data-toggle="tooltip" title="Delete Mobile" data-placement="top"> </span> </a></td>  
+          {% endif %}   
+        </tr>              
+      {% endfor %}
+  </table>
+</div>
+<div class="container">
+
+      <div class="main" style="margin-top: 100px;">
+        
+            {% block content %}
+              
+            {% endblock content %}
+          
+        </div>
+  </div>
+  
+</body>
+</html>

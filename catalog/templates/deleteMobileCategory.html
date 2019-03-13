@@ -1,0 +1,22 @@
+{% include 'nav.html' %}
+<div class="main">
+{% block content %}
+    
+	<div class="">
+		<div class="d-flex justify-content-center">
+			<div class="card" style="width: 38rem;">
+		<form action="{{url_for('deleteMobileCategory',mcid=mc.id)}}" method="POST">
+			<div class="card-body bg-info">
+				<h3 class="card-text" style="color:red">Are you sure you want to delete {{mc.name}}</h3>
+			</div>
+			<div class="card-footer d-flex justify-content-center">
+				<input type="submit" class="btn btn-danger" value="Delete" style="margin-right: 10px;">
+			    <button type="button" class="btn btn-warning"><a href="{{url_for('home')}}">Cancel</a></button>
+			</div>
+			
+		</form>
+	</div>
+		</div>
+		
+	</div>
+	{% endblock content %}
